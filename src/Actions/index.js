@@ -1,8 +1,5 @@
 {
-    type: 'ADD_MOVIE'
+    type: 'ADD_MOVIE',
     movies:[]
 }
 
-{
-    type: 'DECREASE_COUNT'
-}
