@@ -1,6 +1,8 @@
 
 // action types
 export const ADD_MOVIE ='ADD_MOVIE';
+export const ADD_FAVOURITE ='ADD_FAVOURITE';
+//export const REMOVE_FAVOURITE ='REMOVE_FAVOURITE';
 
 // action creators
 export function  addMovies(movies){
@@ -9,3 +11,18 @@ export function  addMovies(movies){
         movies
     }
 }
+
+export function  addFavourite(movie){
+    return {
+        type: ADD_FAVOURITE,
+        movie
+    }
+}
+
+
+// export function  removeFavourite(movie){
+//     return {
+//         type: REMOVE_FAVOURITE,
+//         movie
+//     }
+// }
