@@ -13,14 +13,21 @@ import rootReducer from './Reducer'
 //function logger(obj,next,action)
 //logger(obj)(next)(action)
 
-const logger = function({dispatch, getState}){
-  return function(next){
-    return function(action){
-      //middleware Code
-      console.log('ACTION_TYPE : ',action.type);
-      next(action);
-    }
-  }
+// const logger = function({dispatch, getState}){
+//   return function(next){
+//     return function(action){
+//       //middleware Code
+//       console.log('ACTION_TYPE : ',action.type);
+//       next(action);
+//     }
+//   }
+// }
+
+const logger = ({dispatch, getState})=> (next) => (action) =>{
+  //logger Code
+  //middleware Code
+    console.log('ACTION_TYPE : ',action.type);
+    next(action);
 }
 
 
