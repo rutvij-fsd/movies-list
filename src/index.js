@@ -4,20 +4,18 @@ import { createStore } from 'redux';
 
 
 
-import { data } from "./data";
 
 
 import './index.css';
 import App from './Components/App';
-import movies from './Reducer'
-import { addMovies } from './Actions/index';
+import rootReducer from './Reducer'
 
 
-const store = createStore(movies);
+const store = createStore(rootReducer);
 console.log('store', store);
 // console.log('before state', store.getState());
 
-store.dispatch(addMovies(data));
+//store.dispatch(addMovies(data));
 
 // console.log('After state', store.getState());
 
