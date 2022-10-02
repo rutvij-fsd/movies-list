@@ -40,6 +40,22 @@ export function  showFavourites(val){
 export function addMovieToList(movie){
     return {
         type : ADD_MOVIE_TO_LIST,
-        movie : movie
+        movie
     }
+}
+
+export function handleMovieSearch(movie){
+    const url = `http://www.omdbapi.com/?apikey=aa535c4c&t=${movie}`;
+
+    return function (dispatch) {
+        fetch(url)
+        .then((response) => {
+            return response.json();
+        })
+        .then((movie) =>{
+            console.log('movie',movie);
+        })     
+    }
+    
+   
 }
