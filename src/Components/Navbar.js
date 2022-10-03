@@ -1,5 +1,5 @@
 import React from 'react'
-import {data} from '../data';
+// import {data} from '../data';
 import { addMovieToList, handleMovieSearch } from '../Actions';
 
 class Navbar extends React.Component {
@@ -7,16 +7,16 @@ class Navbar extends React.Component {
   constructor() {
     super();
     this.state = {
-      showSearchResults: true,
+      //showSearchResults: true,
       searchText : ''
     };
   }
 
   handleAddToMovies = (movie) => {
     this.props.store.dispatch(addMovieToList(movie));
-    this.setState({
-      showSearchResults: false,
-    });
+    // this.setState({
+    //   showSearchResults: false,
+    // });
   };
   handleSearch = () => {
     const {searchText} = this.state;
@@ -31,6 +31,8 @@ class Navbar extends React.Component {
   };
 
   render() {
+    const {result : movie, showSearchResults} = this.props.store.getState().search;
+
     return (
       <div className="nav">
         <div className="search-container">
@@ -38,13 +40,13 @@ class Navbar extends React.Component {
           <button id='search-btn' onClick={this.handleSearch}>Search</button>
 
                     {
-                        this.state.showSearchResults && 
+                        showSearchResults && 
                         <div className='search-results'>
                             <div className='search-result'>
-                                <img src={data[0].Poster} />
+                                <img src={movie.Poster} />
                                 <div className='movie-info'>
-                                    <span>{data[0].Title}</span>
-                                    <button onClick={() => this.handleAddToMovies(data[0])}>Add To Movies</button>
+                                    <span>{movie.Title}</span>
+                                    <button onClick={() => this.handleAddToMovies(movie)}>Add To Movies</button>
                                 </div>
                             </div>
                         </div>
