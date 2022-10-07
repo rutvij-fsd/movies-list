@@ -1,8 +1,8 @@
 import React from 'react'
 // import {data} from '../data';
 import { addMovieToList, handleMovieSearch } from '../Actions';
-import {StoreContext} from '../index'
-
+// import {StoreContext} from '../index'
+import {connect} from 'react-redux';
 
 class Navbar extends React.Component {
   
@@ -15,7 +15,7 @@ class Navbar extends React.Component {
   }
 
   handleAddToMovies = (movie) => {
-    this.props.store.dispatch(addMovieToList(movie));
+    this.props.dispatch(addMovieToList(movie));
     // this.setState({
     //   showSearchResults: false,
     // });
@@ -23,7 +23,7 @@ class Navbar extends React.Component {
   handleSearch = () => {
     const {searchText} = this.state;
 
-    this.props.store.dispatch(handleMovieSearch(searchText));
+    this.props.dispatch(handleMovieSearch(searchText));
   };
 
   handleChange = (e) => {
@@ -33,7 +33,7 @@ class Navbar extends React.Component {
   };
 
   render() {
-    const {result : movie, showSearchResults} = this.props.store.getState().search;
+    const {result : movie, showSearchResults} = this.props.search;
 
     return (
       <div className="nav">
@@ -45,7 +45,7 @@ class Navbar extends React.Component {
                         showSearchResults && 
                         <div className='search-results'>
                             <div className='search-result'>
-                                <img src={movie.Poster} />
+                                <img src={movie.Poster} alt={'Movie Poster'} />
                                 <div className='movie-info'>
                                     <span>{movie.Title}</span>
                                     <button onClick={() => this.handleAddToMovies(movie)}>Add To Movies</button>
@@ -60,17 +60,28 @@ class Navbar extends React.Component {
 }
 
 
-class NavbarWrapper extends React.Component{
-  render(){
-      return(
-          <StoreContext.Consumer>
-              {
-                  (store) =>{
-                      return(<Navbar store={store} />)
-                  }
-              }
-          </StoreContext.Consumer>
-      )
+// class NavbarWrapper extends React.Component{
+//   render(){
+//       return(
+//           <StoreContext.Consumer>
+//               {
+//                   (store) =>{
+//                       return(<Navbar store={store} />)
+//                   }
+//               }
+//           </StoreContext.Consumer>
+//       )
+//   }
+// }
+// export default NavbarWrapper;
+
+function mapStateToProps(state){
+  return{
+    search : state.search
   }
 }
-export default NavbarWrapper;
+
+
+const connectedNavbarComponent = connect(mapStateToProps)(Navbar);
+
+export default connectedNavbarComponent;

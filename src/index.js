@@ -1,7 +1,8 @@
-import React, { createContext } from 'react';
+import React  from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 
 
 
@@ -10,7 +11,7 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './Components/App';
 import rootReducer from './Reducer'
-import AppWrapper from './Components/App';
+// import AppWrapper from './Components/App';
 
 //function logger(obj,next,action)
 //logger(obj)(next)(action)
@@ -49,24 +50,24 @@ const logger = ({dispatch, getState})=> (next) => (action) =>{
 const store = createStore(rootReducer, applyMiddleware(logger,thunk));
 console.log('store', store);
 
-export const StoreContext = createContext();
+// export const StoreContext = createContext();
 
-class Provider extends React.Component {
+// class Provider extends React.Component {
 
-  render() {
-    const{store}=this.props;
-    return <StoreContext.Provider value={store}>
-      {this.props.children}
-    </StoreContext.Provider>
-  }
-}
+//   render() {
+//     const{store}=this.props;
+//     return <StoreContext.Provider value={store}>
+//       {this.props.children}
+//     </StoreContext.Provider>
+//   }
+// }
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <AppWrapper />
+      <App />
     </React.StrictMode>
   </Provider>
 );
