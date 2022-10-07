@@ -1,5 +1,6 @@
 import React from 'react'
 import {addFavourite, removeFavourite } from '../Actions'
+
 class MovieCard extends React.Component {
   
   handleFavoriteClick = () => {
@@ -37,5 +38,6 @@ class MovieCard extends React.Component {
     )
   }
 }
+
 
 export default MovieCard

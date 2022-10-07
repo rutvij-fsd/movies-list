@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './Components/App';
 import rootReducer from './Reducer'
+import AppWrapper from './Components/App';
 
 //function logger(obj,next,action)
 //logger(obj)(next)(action)
@@ -65,7 +66,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App store={store} />
+      <AppWrapper />
     </React.StrictMode>
   </Provider>
 );
